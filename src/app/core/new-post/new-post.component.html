@@ -1,0 +1,47 @@
+<a class="nav-link" href="javascript:;" (click)="openModal(template)">New Post</a>
+
+<ng-template #template>
+  <tabset>
+
+    <tab heading="Text Post" id="text">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">New Text Post</h4>
+        <button type="button" class="close pull-right" (click)="modalRef.hide()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="submitTextPost()" #textPostForm="ngForm">
+
+          <div class="form-group" *ngIf="model">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" required
+                [(ngModel)]="model.title" name="title">
+          </div>
+
+          <div class="form-group" *ngIf="model">
+            <label for="body">Post Body</label>
+            <textarea rows="8" type="text" class="form-control" id="body" required
+                [(ngModel)]="model.body" name="body"></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-success">Submit</button>
+
+        </form>
+      </div>
+    </tab>
+
+    <tab heading="Image Post" id="image">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">New Image Post</h4>
+        <button type="button" class="close pull-right" (click)="modalRef.hide()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Here is where you make the meem
+      </div>
+    </tab>
+
+  </tabset>
+</ng-template>
