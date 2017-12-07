@@ -1,6 +1,7 @@
 const express = require('express');
 const Post    = require('../models/post.js');
 const User    = require('../models/user.js');
+const Profile = require('../models/localuser.js');
 
 const router = express.Router();
 
@@ -49,23 +50,26 @@ router.post('/text', (req,res) => {
     let title = req.body.title;
     let body  = req.body.body;
     let tags  = req.body.tags.split(',');
-    let user  = { name: "delearyus", url: "siegestor" };
-    Post.createTextPost(title,body,tags,user, (err,msg) => {
-        if (err) {
-            res.json({
-                success: false,
-                title: title,
-                body: body,
-                tags: tags,
-                user: user,
-                message: `Error creating post: ${err}`
-            });
-        } else {
-            res.json({
-                success: true,
-                message: "Post created successfully"
-            });
-        }
+    var  user  = { name: "delearyus", url: "siegestor" };
+    Profile.getProfile((err,profile) => {
+        user = err ? user : { name: profile.name, url: profile.url }
+        Post.createTextPost(title,body,tags,user, (err,msg) => {
+            if (err) {
+                res.json({
+                    success: false,
+                    title: title,
+                    body: body,
+                    tags: tags,
+                    user: user,
+                    message: `Error creating post: ${err}`
+                });
+            } else {
+                res.json({
+                    success: true,
+                    message: "Post created successfully"
+                });
+            }
+        });
     });
 });
 
@@ -73,23 +77,26 @@ router.post('/image', (req,res) => {
     let url = req.body.url;
     let caption = req.body.caption;
     let tags = req.body.tags.split(',');
-    let user = { name: "delearyus", url: "siegestor" };
-    Post.createImagePost(url,caption,tags,user, (err,msg) => {
-        if (err) {
-            res.json({
-                success: false,
-                url: url,
-                caption: caption,
-                tags: tags,
-                user: user,
-                message: `Error creating post: ${err}`
-            });
-        } else {
-            res.json({
-                success: true,
-                messsage: "Post created successfully"
-            });
-        }
+    var user = { name: "delearyus", url: "siegestor" };
+    Profile.getProfile((err,profile) => {
+        user = err ? user : { name: profile.name, url: profile.url }
+        Post.createImagePost(url,caption,tags,user, (err,msg) => {
+            if (err) {
+                res.json({
+                    success: false,
+                    url: url,
+                    caption: caption,
+                    tags: tags,
+                    user: user,
+                    message: `Error creating post: ${err}`
+                });
+            } else {
+                res.json({
+                    success: true,
+                    messsage: "Post created successfully"
+                });
+            }
+        });
     });
 });
 

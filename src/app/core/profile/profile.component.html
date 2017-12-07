@@ -1,0 +1,11 @@
+<a href="javascript:;" (click)="openModal(profile)">{{user.name}}</a>
+
+<ng-template #profile>
+  <div class="media">
+    <img class="mr-3" gravatar [email]="user.email" [size]="128">
+    <div class="media-body">
+      <h5 class="mt-0">Profile for {{user.name}}</h5>
+      {{user.bio}}
+    </div>
+  </div>
+</ng-template>

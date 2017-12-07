@@ -49,6 +49,23 @@ export class NewPostComponent {
         alert("there seems to be a problem");
       } else {
         this.modalRef.hide();
+        this.model = {};
+      }
+    });
+  }
+
+  submitImagePost(): void {
+    this._postService.makeImagePost({
+      imageUrl: this.model['imageUrl'],
+      caption: this.model['caption'],
+      tags: []
+    }).subscribe((res) => {
+      console.log(res);
+      if (!res.success) {
+        alert("there seems to be a problem");
+      } else {
+        this.modalRef.hide();
+        this.model = {};
       }
     });
   }

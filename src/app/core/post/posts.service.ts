@@ -36,6 +36,15 @@ export class PostService {
     return this._http.post('/api/posts/text', body).map(res => res.json());
   }
 
+  makeImagePost(post) {
+    let body = new URLSearchParams();
+    console.log(post.imageUrl);
+    body.append('url', post.imageUrl);
+    body.append('caption',  post.caption);
+    body.append('tags',     post.tags.join(','));
+    return this._http.post('/api/posts/image', body).map(res => res.json());
+  }
+
   refreshDashboard() {
     console.log("refreshing dashboard");
     this._http.get("/api/dashboard/refresh").subscribe(

@@ -7,6 +7,7 @@ const router = express.Router();
 const postRoutes = require('./posts.js');
 const userRoutes = require('./users.js');
 const configRoutes = require('./config.js');
+const profileRoutes = require('./profile.js');
 const dashboardRoutes = require('./dashboard.js');
 const auth = require('./auth.js');
 
@@ -16,6 +17,7 @@ router.use('/posts', postRoutes);
 router.use('/users', userRoutes);
 router.use('/config', configRoutes);
 router.use('/dashboard', dashboardRoutes);
+router.use('/profile', profileRoutes);
 
 
 router.all('*', (req,res) => {

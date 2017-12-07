@@ -39,7 +39,24 @@
         </button>
       </div>
       <div class="modal-body">
-        Here is where you make the meem
+        <form (ngSubmit)="submitImagePost()" #imagePostForm="ngForm">
+          <div class="form-group">
+            <label for="url">Image Url</label>
+            <input type="text" class="form-control" id="title" required
+                [(ngModel)]="model.imageUrl" name="title">
+          </div>
+
+          <img *ngIf="model.imageUrl" class="border rounded" [src]="model.imageUrl">
+          
+          <div class="form-group">
+            <label for="caption">Caption</label>
+            <textarea rows="8" type="text" class="form-control" id="body" required
+                [(ngModel)]="model.caption" name="caption"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-success">Submit</button>
+
+        </form>
       </div>
     </tab>
 

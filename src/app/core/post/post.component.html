@@ -4,6 +4,9 @@
       <h4 class="card-title">{{post.body.title}}</h4>
       <p class="card-text">{{post.body.body}}</p>
     </div>
+    <div class="card-footer text-muted">
+      <app-profile [url]="post.author.url"></app-profile> on {{post.date}}
+    </div>
   </div>
 
   <div *ngSwitchCase="'image'" class="card" style="margin:1rem">
@@ -12,7 +15,9 @@
       <p class="card-text">{{post.body.caption}}</p>
     </div>
     <div class="card-footer text-muted">
-      {{post.author.name}} on {{post.date}}
+      <app-profile [url]="post.author.url"></app-profile> on {{post.date}}
     </div>
   </div>
+
+  <!--DEBUG: {{debugInfo}}-->
 </ng-container>

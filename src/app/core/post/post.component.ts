@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, } from '@angular/core';
 import { NgSwitch } from '@angular/common';
 
 @Component({
@@ -11,5 +11,11 @@ export class PostComponent {
   @Input() post;
 
   constructor() { }
+
+
+  // not necessary for production, but good for testing to make sure the models
+  // aren't fucked
+  get debugInfo() { return JSON.stringify(this.post); }
+
 
 }
