@@ -12,7 +12,7 @@ mongodb://localhost/jester, not just mongodb://localhost). It also contains
 a port field, which is the port that the node process will claim.
 
 To run the server, use `node app [profile]`. The default profiles are "1" and
-"2", although they can be arbitrary strings.
+"2", as well as "alice", "bob", and "carol"
 
 ## API
 
